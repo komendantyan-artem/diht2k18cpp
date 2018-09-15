@@ -3,6 +3,7 @@
 
 /* Don't see any check for wrong input data, like "b b b" "drev diht etc" */
 /* Are you sure? At least on these tests my program run perfectly. */
+/* Ok, missed your if-statement last time, my apologizes */
 void read_variables(double &a, double &b, double &c) {
     std::cout << "Square equation solver." << std::endl;
     std::cout << "Please write a, b, c from ax^2 + bx + c = 0." << std::endl;
@@ -15,6 +16,8 @@ void read_variables(double &a, double &b, double &c) {
 /* What made you use here size_t? */
 /* If we returned some container with roots then its size would be size_t.
  * So I used it in somehow similar situation. Should I use just unsigned int? */
+/* Okay, it is not a big deal here, size_t is usually used when we speak about size of something, like file, array
+   here I'd use unsigned, but it is just philosophical question, go with size_t if you like */
 void write_answer(size_t number_of_roots, double x1, double x2) {
     if (number_of_roots == 0) {
         std::cout << "There is no solution of the equation." << std::endl;
