@@ -1,6 +1,7 @@
 #include <iostream>
 #include "solve_equation.h"
 
+/* Don't see any check for wrong input data, like "b b b" "drev diht etc" */
 void read_variables(double &a, double &b, double &c) {
     std::cout << "Square equation solver." << std::endl;
     std::cout << "Please write a, b, c from ax^2 + bx + c = 0." << std::endl;
@@ -10,6 +11,7 @@ void read_variables(double &a, double &b, double &c) {
     }
 }
 
+/* What made you use here size_t? */
 void write_answer(size_t number_of_roots, double x1, double x2) {
     if (number_of_roots == 0) {
         std::cout << "There is no solution of the equation." << std::endl;
