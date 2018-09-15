@@ -2,6 +2,7 @@
 #include <limits>
 #include <cstddef>
 
+/* this subroutine might be inline, why should be make an additional call, if it is just conditional statement? */
 static bool is_equal(double a, double b, double eps) {
     return fabs(a - b) <= eps;
 }
@@ -50,6 +51,7 @@ size_t solve_quadratic_equation(double a, double b, double c, double &x1, double
     }
     double discriminant = b * b - 4 * a * c;
     if (is_equal(discriminant, 0.0, eps)) {
+        /* probably in some cases here I can see -0 */
         x1 = -b / (2 * a);
         return 1;
     } else if (discriminant < 0) {
