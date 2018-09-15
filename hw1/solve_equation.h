@@ -1,9 +1,9 @@
 #include <cmath>
 #include <limits>
 #include <cstddef>
+#include <cassert>
 
-/* this subroutine might be inline, why should be make an additional call, if it is just conditional statement? */
-static bool is_equal(double a, double b, double eps) {
+static inline bool is_equal(double a, double b, double eps) {
     return fabs(a - b) <= eps;
 }
 
