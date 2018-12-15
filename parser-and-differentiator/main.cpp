@@ -7,10 +7,10 @@
 #include <string>
 #include <cassert>
 
-void createTex(const std::string filename) {
+void createTex(const std::string text, const std::string filename) {
     std::ofstream fout(filename);
+    assert(fout.is_open());
 
-    std::string text = "x^x+x*y+42*sin(cos(ln(-x)))-1+y^2+0+z+0^1";
     auto node = Parser(text).parse();
     auto derivativeX = differentiate(node, 'x');
     auto derivativeY = differentiate(node, 'y');
@@ -34,7 +34,23 @@ void createTex(const std::string filename) {
     fout << "\\end{document}" << std::endl;
 }
 
-int main() {
-    createTex("output.tex");
-    system("pdflatex output.tex");
+std::string readText(const std::string filename) {
+    std::ifstream fin(filename);
+    assert(fin.is_open());
+    
+    std::string text;
+    fin >> text;
+    return text;
+}
+
+int main(int argc, char** argv) {
+    assert(argc == 3);
+    std::string inputFilename = argv[1];
+    std::string outputFilename = argv[2];
+    outputFilename += ".tex";
+    
+    std::string text = readText(inputFilename);
+    
+    createTex(text, outputFilename);
+    system((std::string("pdflatex ") + outputFilename).c_str());
 }
